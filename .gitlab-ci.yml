@@ -1,0 +1,16 @@
+image: mcr.microsoft.com/dotnet/sdk:7.0
+
+stages:
+  - build
+
+build:
+  stage: build
+  script:
+    - 'dotnet restore' # Restaure les dépendances du projets
+    - 'dotnet build -c Release' # Compile le projet en mode Release
+    - 'dotnet publish -c Release -o artifact' # Publie le projet en mode Release dans un répertoire "artifact"
+  tags:
+    - build
+  artifacts:
+    paths:
+      - artifact/ 
